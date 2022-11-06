@@ -56,6 +56,7 @@ jobs:
     - name: Install libcurl library
       working-directory: curl-7.64.1
       run: |
+        sed -i '54d' include/curl/curl.h
         mkdir orbis && cd orbis
         cmake --toolchain ../../openorbis.cmake .. -DCMAKE_USE_MBEDTLS=1 -DUSE_UNIX_SOCKETS=0 -DENABLE_THREADED_RESOLVER=0 -DENABLE_IPV6=0
         make libcurl
