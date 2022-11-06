@@ -62,10 +62,11 @@ jobs:
         make libcurl
         cp lib/libcurl.a "${OO_PS4_TOOLCHAIN}/lib"
 
-#    - name: Push package artifact
-#      uses: actions/upload-artifact@v3
-#      with:
-#        name: lib-ps4-build_${{ steps.slug.outputs.sha8 }}
-#        path: ${{ env.pkg_file }}
-#        if-no-files-found: error
-#        retention-days: 7 # don't keep artifacts for too long
+    - name: Compress output
+      run: |
+        tar -zcvf build.tar.gz ${OO_PS4_TOOLCHAIN}/lib/libcurl.a ${OO_PS4_TOOLCHAIN}/lib/libmbed*.a
+    - uses: actions/upload-artifact@v3.1.1
+      with:
+        name: build-libs
+        path: build.tar.gz
+        retention-days: 5
