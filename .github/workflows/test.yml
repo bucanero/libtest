@@ -15,7 +15,7 @@ jobs:
     - name: Checkout Dependecies
       run: |
         curl -sL https://src.fedoraproject.org/repo/pkgs/mbedtls/mbedtls-2.16.6-apache.tgz/sha512/a0c48b694d7bc70256d26c44bfb2ac802428560b02e50fe2e47762bc595e2c7b8fac934badb3452acb01d8a54386eafae0ff2894320d24ab7554f1c8e6cb4bcf/mbedtls-2.16.6-apache.tgz | tar xvz -C ./
-        curl -sL https://curl.se/download/curl-7.64.1.tar.bz2 | tar xvz -C ./
+        curl -sL https://curl.se/download/curl-7.64.1.tar.bz2 | tar xvj -C ./
         wget https://raw.githubusercontent.com/bucanero/SDL-PS4/ps4/cmake/openorbis.cmake
 
     - name: Set env vars
