@@ -70,5 +70,3 @@ jobs:
         name: build-libs
         path: build.tar.gz
         retention-days: 5
-    - name: Download all workflow run artifacts
-  uses: actions/download-artifact@v3
