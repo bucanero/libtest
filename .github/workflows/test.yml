@@ -51,6 +51,7 @@ jobs:
         cmake --toolchain ../../openorbis.cmake .. -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=FALSE -DENABLE_PROGRAMS=FALSE -DMBEDTLS_FATAL_WARNINGS=0
         make mbedtls
         cp library/*.a "${OO_PS4_TOOLCHAIN}/lib"
+        cp -R ../include/mbedtls "${OO_PS4_TOOLCHAIN}/include/"
 
     - name: Install libcurl library
       working-directory: curl-7.64.1
@@ -60,10 +61,10 @@ jobs:
         make libcurl
         cp lib/libcurl.a "${OO_PS4_TOOLCHAIN}/lib"
 
-    - name: Push package artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: apollo-ps4-build_${{ steps.slug.outputs.sha8 }}
-        path: ${{ env.pkg_file }}
-        if-no-files-found: error
-        retention-days: 7 # don't keep artifacts for too long
+#    - name: Push package artifact
+#      uses: actions/upload-artifact@v3
+#      with:
+#        name: lib-ps4-build_${{ steps.slug.outputs.sha8 }}
+#        path: ${{ env.pkg_file }}
+#        if-no-files-found: error
+#        retention-days: 7 # don't keep artifacts for too long
