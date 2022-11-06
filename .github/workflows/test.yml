@@ -1,4 +1,4 @@
-name: Build package
+name: Build libs
 
 on: [ push, pull_request, workflow_dispatch ]
 
@@ -65,7 +65,10 @@ jobs:
     - name: Compress output
       run: |
         tar -zcvf build.tar.gz ${OO_PS4_TOOLCHAIN}/lib/libcurl.a ${OO_PS4_TOOLCHAIN}/lib/libmbedtls.a
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3.1.1
       with:
         name: build-libs
         path: build.tar.gz
+        retention-days: 5
+    - name: Download all workflow run artifacts
+  uses: actions/download-artifact@v3
